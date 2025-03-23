@@ -1,0 +1,4 @@
+__label__syntax Kas yra kintamasis Java?
+__label__oop Kas yra paveldėjimas Java?
+__label__exception Kas yra išimtis Java kalboje?
+__label__spring Kaip sukurti REST API su Spring Boot?
