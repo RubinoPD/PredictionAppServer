@@ -29,7 +29,7 @@ public class AuthService {
     }
 
     public ChatUser signup(RegisterRequestDto input) {
-        // Pakeista iš USER į STUDENT
+
         Role role = Role.STUDENT;
 
         // Jei nurodyta specifinė rolė

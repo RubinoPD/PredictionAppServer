@@ -11,7 +11,7 @@ import java.io.File;
 public class TrainGradePrediction {
     public static void main(String[] args) {
 
-        var path = "C:\\Users\\mgzeg\\IdeaProjects\\PredictionAppServer\\src\\main\\resources\\static\\stud_grade_training_data.csv";
+        var path = "src/main/resources/static/stud_grade_training_data.csv";
         try {
             CSVLoader loader = new CSVLoader();
             loader.setSource(new File(path));
@@ -23,12 +23,11 @@ public class TrainGradePrediction {
             J48 tree = new J48();
             tree.buildClassifier(data);
 
-            var outputPath = "C:\\Users\\mgzeg\\IdeaProjects\\PredictionAppServer\\src\\main\\resources\\static\\trained_models\\grade-model.model";
+            var outputPath = "src/main/resources/static/trained_models/grade-model.model";
             SerializationHelper.write(outputPath, tree);
             System.out.println("Prediction model trained!!!");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
