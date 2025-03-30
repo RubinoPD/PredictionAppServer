@@ -15,7 +15,7 @@ public class TrainChatBot {
     public static void main(String[] args) throws Exception {
 
         // Data for training
-        var filePath = "src/main/resources/static/chat_training_data.txt";
+        var filePath = "C:\\Users\\Robertas\\Desktop\\PredictionAppServer\\PredictionAppServer-master\\src\\main\\resources\\static\\chat_training_data.txt";
 
         InputStream inputFile = new FileInputStream(filePath);
 
@@ -31,7 +31,7 @@ public class TrainChatBot {
         DoccatModel model = DocumentCategorizerME.train("lt", sampleStream, params, factory);
 
         // Trained model output path
-        var outputPath = "src/main/resources/static/trained_models";
+        var outputPath = "C:\\Users\\Robertas\\Desktop\\PredictionAppServer\\PredictionAppServer-master\\src\\main\\resources\\static\\trained_models";
 
         try(OutputStream out = new FileOutputStream(outputPath+"/chatbot-model.bin")) {
             model.serialize(out);

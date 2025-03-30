@@ -34,9 +34,9 @@ public class GradePredictionController {
     public GradePredictionController(GradeHistoryRepository gradeHistoryRepository) throws Exception {
         this.gradeHistoryRepository = gradeHistoryRepository;
 
-        // Kelią reikia pritaikyti prie jūsų projekto struktūros
-        String modelPath = "src/main/resources/static/trained_models/grade-model.model";
-        String dataPath = "src/main/resources/static/stud_grade_training_data.csv";
+
+        String modelPath = "C:\\Users\\Robertas\\Desktop\\PredictionAppServer\\PredictionAppServer-master\\src\\main\\resources\\static\\trained_models\\grade-model.model";
+        String dataPath = "C:\\Users\\Robertas\\Desktop\\PredictionAppServer\\PredictionAppServer-master\\src\\main\\resources\\static\\stud_grade_training_data.csv";
 
         // Load the trained model
         this.tree = (J48) SerializationHelper.read(modelPath);

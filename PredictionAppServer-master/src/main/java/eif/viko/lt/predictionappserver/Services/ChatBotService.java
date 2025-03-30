@@ -22,7 +22,7 @@ public class ChatBotService {
     private final Map<String, String> categoryResponses = new HashMap<>();
 
     public ChatBotService(ChatHistoryRepository chatHistoryRepository,
-                          @Value("${chatbot.model.path:src/main/resources/static/trained_models/chatbot-model.bin}") String modelPath) throws IOException {
+                          @Value("${chatbot.model.path:C:\\Users\\Robertas\\Desktop\\PredictionAppServer\\PredictionAppServer-master\\src\\main\\resources\\static\\trained_models\\chatbot-model.bin}") String modelPath) throws IOException {
         this.chatHistoryRepository = chatHistoryRepository;
 
         try (InputStream modelIn = new FileInputStream(modelPath)) {

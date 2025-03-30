@@ -22,7 +22,7 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Sukurti pradinius vartotojus, jeigu jų nėra
 
-        // Administratorius
+        // Administ ratorius
         if (!userRepository.findByEmail("admin@example.com").isPresent()) {
             ChatUser admin = new ChatUser();
             admin.setUsername("Admin");
@@ -51,7 +51,7 @@ public class DataInitializer implements CommandLineRunner {
             student.setEmail("student@example.com");
             student.setPassword(passwordEncoder.encode("student123"));
             student.setEnabled(true);
-            student.setRole(Role.STUDENT);
+            student.setRole(Role.USER);
             userRepository.save(student);
         }
     }

@@ -30,14 +30,14 @@ public class AuthService {
 
     public ChatUser signup(RegisterRequestDto input) {
 
-        Role role = Role.STUDENT;
+        Role role = Role.USER;
 
         // Jei nurodyta specifinė rolė
         if (input.getRole() != null && !input.getRole().isEmpty()) {
             try {
                 role = Role.valueOf(input.getRole().toUpperCase());
             } catch (IllegalArgumentException e) {
-                // Jei tokios rolės nėra, naudojame STUDENT
+                // Jei tokios rolės nėra, naudojame USER
             }
         }
 
