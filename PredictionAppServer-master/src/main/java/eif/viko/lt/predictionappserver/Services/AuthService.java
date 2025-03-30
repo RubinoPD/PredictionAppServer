@@ -36,7 +36,7 @@ public class AuthService {
                 input.getEmail(),
                 passwordEncoder.encode(input.getPassword()),
                 true,
-                Role.USER
+                Role.STUDENT
         );
 
         return userRepository.save(chatUser);
