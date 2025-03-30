@@ -1,6 +1,5 @@
 package eif.viko.lt.predictionappserver.Dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequestDto {
-
     private String email;
     private String password;
     private String username;
-
+    private String role; // STUDENT, TEACHER, ADMIN
 }

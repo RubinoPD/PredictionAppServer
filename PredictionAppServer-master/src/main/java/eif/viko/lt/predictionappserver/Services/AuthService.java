@@ -29,6 +29,17 @@ public class AuthService {
     }
 
     public ChatUser signup(RegisterRequestDto input) {
+        // Pakeista iš USER į STUDENT
+        Role role = Role.STUDENT;
+
+        // Jei nurodyta specifinė rolė
+        if (input.getRole() != null && !input.getRole().isEmpty()) {
+            try {
+                role = Role.valueOf(input.getRole().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                // Jei tokios rolės nėra, naudojame STUDENT
+            }
+        }
 
         ChatUser chatUser = new ChatUser(
                 null,
@@ -36,7 +47,7 @@ public class AuthService {
                 input.getEmail(),
                 passwordEncoder.encode(input.getPassword()),
                 true,
-                Role.STUDENT
+                role
         );
 
         return userRepository.save(chatUser);
