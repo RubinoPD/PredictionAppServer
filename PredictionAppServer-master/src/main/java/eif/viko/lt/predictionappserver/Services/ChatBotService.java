@@ -55,8 +55,15 @@ public class ChatBotService {
         double[] outcomes = categorizer.categorize(tokens);
 
         String bestCategory = categorizer.getBestCategory(outcomes);
+
+        // Pasaliname "__label__" prefiksa, jei jis yra
+        if (bestCategory.startsWith("__label__")) {
+            bestCategory = bestCategory.substring("__label__".length());
+        }
+
         String response = categoryResponses.getOrDefault(bestCategory,
                 "Atsiprašau, bet negaliu atsakyti į šį klausimą. Prašome užduoti klausimą susijusį su Java programavimu.");
+
 
         // Išsaugome užklausimą ir atsakymą istorijoje
         if (user != null) {
@@ -67,13 +74,18 @@ public class ChatBotService {
 
         // Grąžiname kategoriją ir atsakymą
         Map<String, Object> result = new HashMap<>();
-        result.put("bestCategory", bestCategory);
+        result.put("bestCategory", response);
         result.put("response", response);
 
         // Pridedame visas galimas kategorijas ir jų tikimybes
         Map<String, Double> categories = new HashMap<>();
         for (int i = 0; i < outcomes.length; i++) {
-            categories.put(categorizer.getCategory(i), outcomes[i]);
+            String category = categorizer.getCategory(i);
+            // Pasaliname prefiksa is kategoriju
+            if (category.startsWith("__label__")) {
+                category = category.substring("__label__".length());
+            }
+            categories.put(category, outcomes[i]);
         }
         result.put("allCategories", categories);
 
