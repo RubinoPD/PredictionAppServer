@@ -93,11 +93,18 @@ public class GradePredictionController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof ChatUser) {
             ChatUser currentUser = (ChatUser) authentication.getPrincipal();
-            List<GradeHistory> history = gradeHistoryRepository.findByUserOrderByPredictionDateDesc(currentUser);
-            return ResponseEntity.ok(history);
-        } else {
-            return ResponseEntity.status(401).build();
+
+            // Tik savo istoriją gauna USER, o TEACHER ir ADMIN - visų
+            if (currentUser.getRole() == Role.USER) {
+                List<GradeHistory> history = gradeHistoryRepository.findByUserOrderByPredictionDateDesc(currentUser);
+                return ResponseEntity.ok(history);
+            } else if (currentUser.getRole() == Role.TEACHER || currentUser.getRole() == Role.ADMIN) {
+                // Mokytojams reikėtų leisti matyti istorijos įrašus
+                List<GradeHistory> history = gradeHistoryRepository.findAll();
+                return ResponseEntity.ok(history);
+            }
         }
+        return ResponseEntity.status(401).build();
     }
 
     @PutMapping("/history/{id}/actual-grade")
